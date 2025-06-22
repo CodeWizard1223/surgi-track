@@ -1,12 +1,12 @@
 package sk.malajter.surgi_track.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "surgery")
 @NoArgsConstructor
@@ -22,4 +22,11 @@ public class Surgery {
     private String type;
     private String department;
 
+    @ManyToMany
+    @JoinTable(
+            name = "surgery_instrument_set",
+            joinColumns = @JoinColumn(name = "surgery_id"),
+            inverseJoinColumns = @JoinColumn(name = "instrument_set_id")
+    )
+    private Set<InstrumentSet> instrumentSets = new HashSet<>();
 }

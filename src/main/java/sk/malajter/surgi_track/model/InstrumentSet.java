@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "instrument_set")
@@ -28,4 +29,8 @@ public class InstrumentSet {
             inverseJoinColumns = @JoinColumn(name = "instrument_id")
     )
     private Set<Instrument> instruments;
+
+    @ManyToMany(mappedBy = "instrumentSets")
+    private Set<Surgery> surgeries = new HashSet<>();
+
 }
