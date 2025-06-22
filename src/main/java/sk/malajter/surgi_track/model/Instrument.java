@@ -10,8 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "instrument")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Instrument {
 
