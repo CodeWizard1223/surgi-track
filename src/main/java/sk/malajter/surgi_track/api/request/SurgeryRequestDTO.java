@@ -4,7 +4,7 @@ package sk.malajter.surgi_track.api.request;
 import lombok.Data;
 
 @Data
-public class SurgeryAddRequest {
+public class SurgeryRequestDTO {
 
     private String name;
 

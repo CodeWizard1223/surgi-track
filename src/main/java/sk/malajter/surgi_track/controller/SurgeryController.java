@@ -3,7 +3,7 @@ package sk.malajter.surgi_track.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.malajter.surgi_track.api.request.SurgeryAddRequest;
+import sk.malajter.surgi_track.api.request.SurgeryRequestDTO;
 import sk.malajter.surgi_track.model.Surgery;
 import sk.malajter.surgi_track.repository.SurgeryRepository;
 
@@ -29,7 +29,7 @@ public class SurgeryController {
     }
 
     @PostMapping
-    public Surgery createSurgery(@RequestBody SurgeryAddRequest dto) {
+    public Surgery createSurgery(@RequestBody SurgeryRequestDTO dto) {
         Surgery surgery = new Surgery();
         surgery.setName(dto.getName());
         surgery.setType(dto.getType());
@@ -39,7 +39,7 @@ public class SurgeryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Surgery> updateSurgery(@PathVariable Long id, @RequestBody SurgeryAddRequest dto) {
+    public ResponseEntity<Surgery> updateSurgery(@PathVariable Long id, @RequestBody SurgeryRequestDTO dto) {
         return surgeryRepository.findById(id)
                 .map(existing -> {
                     existing.setName(dto.getName());
@@ -52,8 +52,7 @@ public class SurgeryController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Surgery> patchSurgery(@PathVariable Long id,
-                                                @RequestBody SurgeryAddRequest dto) {
+    public ResponseEntity<Surgery> patchSurgery(@PathVariable Long id, @RequestBody SurgeryRequestDTO dto) {
         return surgeryRepository.findById(id)
                 .map(existing -> {
                     if (dto.getName() != null) existing.setName(dto.getName());
