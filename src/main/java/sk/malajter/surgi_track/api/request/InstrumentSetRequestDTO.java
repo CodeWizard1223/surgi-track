@@ -10,6 +10,6 @@ public class InstrumentSetRequestDTO {
     private String name;
     private String usage;
     private String description;
-    private Set<Long> instrumentIds;
+    private Set<String> instrumentNames;
 
 }
